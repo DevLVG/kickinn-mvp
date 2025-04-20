@@ -1,5 +1,17 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
-  "buildCommand": "npm run vercel-build",
-  "outputDirectory": "dist"
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "buildCommand": "npm run vercel-build",
+        "outputDirectory": "dist"
+      }
+    }
+  ],
+  "routes": [
+    { "handle": "filesystem" },
+    { "src": "/(.*)", "dest": "/index.html" }
+  ]
 } 
