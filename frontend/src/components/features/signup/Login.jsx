@@ -1,14 +1,13 @@
 'use client';
 
 import { useState, useCallback } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { supabase } from '../../../lib/supabaseClient';
 import EmailInput from './EmailInput';
 import RoleSelector from './RoleSelector';
 import WalletConnect from './WalletConnect';
 
 export default function Login() {
-  const navigate = useNavigate();
   const [formState, setFormState] = useState({
     email: { value: '', isValid: false },
     password: { value: '', isValid: false },
@@ -121,9 +120,6 @@ export default function Login() {
         ...prev,
         form: { ...prev.form, isSubmitting: false }
       }));
-
-      // Redirect to dashboard after successful signup and profile creation
-      navigate('/dashboard', { replace: true });
     } catch (error) {
       console.error('Unexpected error during signup:', error);
       setFormState(prev => ({
